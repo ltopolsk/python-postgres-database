@@ -1,5 +1,0 @@
-CREATE TABLE person(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL,
-    surname VARCHAR(20) NOT NULL
-);
