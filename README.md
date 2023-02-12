@@ -1,2 +1,2 @@
 # python-postgres-database
-This project is about creating postres database using python script. 
+This project is about creating postgres database using python script. 
