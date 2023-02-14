@@ -1,6 +1,6 @@
 CREATE TABLE Kategorie(
     Nr_kategorii    SERIAL PRIMARY KEY,
-    Nazwa           VARCHAR(25) NOT NULL UNIQUE
+    Nazwa           VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE Kraje(
@@ -11,11 +11,13 @@ CREATE TABLE Kraje(
 
 CREATE TABLE Podroze(
     Nr_podrozy              SERIAL PRIMARY KEY,
-    Nazwa                   VARCHAR(40) NOT NULL UNIQUE,
+    Nazwa                   VARCHAR(100) NOT NULL UNIQUE,
     Data_rozpoczecia        DATE UNIQUE,
     Data_zakonczenia        DATE UNIQUE,
     Opis                    TEXT
 );
+
+ALTER TABLE podroze ADD CONSTRAINT podroze_ck_kontrola_dat CHECK ( data_rozpoczecia <= data_zakonczenia );
 
 CREATE TABLE Miejsca(
     Nr_miejsca              SERIAL PRIMARY KEY,
