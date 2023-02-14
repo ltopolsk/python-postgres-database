@@ -1,5 +1,5 @@
+
 from psycopg2 import OperationalError
-import psycopg2.errors
 
 
 def get_commands(filepath):
@@ -14,10 +14,11 @@ def exec_commands(commands, conn, is_dql):
         try:
             curs.execute(command)
         except OperationalError as msg:
-            print(f'command no {i} skipped due to operational error: {msg}')
-        except psycopg2.errors.DuplicateTable as msg:
-            print(f"error: {str(msg).rstrip()}, skipping command no {i}") 
+            print(f'OperationalError with command no {i}: {msg}')
+        except Exception as e:
+            raise e
+        # finally:
     if not is_dql:
         conn.commit()
-    if conn is not None:
-        conn.close()
+    if curs is not None:
+        curs.close()
